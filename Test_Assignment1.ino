@@ -7,13 +7,20 @@
 #define sigA 4 //Signal A or LED 1
 #define sigB 5 //Signal B or LED 2
 
+//Values corresponding to the first 5 letters in surname "naduparambil"
+#define n 14
+#define a 1
+#define d 4
+#define u 21
+#define p 16
+
 //Calculate the Parameters: 5 letters of surname "Nadup"
-int A = 14*100; // parameter 'a' calculated as n*100 = 14*100 = 1400
-int B = 1*100; // parameter 'b' calculated as a*100 = 1*100 = 100
-int C = 4+4; // parameter 'c' calculated as d+4 = 4+4 = 8
-int D = 21*500; // parameter 'd' calculated as u*500 = 21*500 = 10500
-int M = ( 16 % 4 ) + 1;// mode is calculated as rem(p/4) + 1 = rem(16/4) + 1 = 1. Hence we use mode 1
-int R = C-3; // parameter used in mode '1' where we reduce the pulses by 3, r = c-3 = 8-3 = 5
+int A = n * 100; // parameter 'a' calculated as n*100
+int B = a * 100; // parameter 'b' calculated as a*100
+int C = d + 4; // parameter 'c' calculated as d+4
+int D = u * 500; // parameter 'd' calculated as u*500
+int M = ( p % 4 ) + 1;// mode is calculated as rem(p/4) + 1 = rem(16/4) + 1 = 1. Hence we use mode 1
+int R = C - 3; // parameter used in mode '1' where we reduce the pulses by 3, r = c-3
 
 //Variables to read switch values and determine the case
 int sw1 = 0, sw2 = 0; //Switch 1 and Switch 2
