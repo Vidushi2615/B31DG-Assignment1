@@ -38,9 +38,8 @@ void loop() {
   int B = a * 100; // parameter 'b' calculated as a*100
   int C = d + 4; // parameter 'c' calculated as d+4
   int D = u * 500; // parameter 'd' calculated as u*500
-  int M = ( p % 4 ) + 1;// mode is calculated as rem(p/4) + 1 = rem(16/4) + 1 = 1. Hence we use mode 1
-  int R = C - 3; // parameter used in mode '1' where we reduce the pulses by 3, r = c-3
-
+  int M = ( p % 4 ) + 1;// mode is calculated as rem(p/4) + 1 = rem(11/4) + 1 = 4. Hence we use mode 4
+  
   sw1 = digitalRead(s1); // reading from Switch 1 (s1) and storing it in sw1
   sw2 = digitalRead(s2); // reading from Switch 2 (s2) and storing it in sw2
   
@@ -64,22 +63,21 @@ void loop() {
         delay(A);
         digitalWrite(sigA, LOW);
         delay(B);
-        A = A+50;
+        A = A+1000;
       }
+      delay(D);
     }
     else
     {
-      for(int i = 0 ; i < R ; i++ )
+      for(int i = 0 ; i < C ; i++ )
       {
         digitalWrite(sigA, HIGH);
         delay(A);
         digitalWrite(sigA, LOW);
-        delay(B);
-        A = A+50;
+        delay(B/2);
+        A = A+1000;
       }
+      delay(D/2);
     }
-    
-    delay(D);
-  
   }
 }
