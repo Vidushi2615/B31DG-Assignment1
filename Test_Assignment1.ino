@@ -11,11 +11,11 @@
 #define SIG_B_WIDTH 50
 
 //Values corresponding to the first 5 letters in the surname "naduparambil"
-#define n 14
+#define n 13
 #define a 1
 #define d 4
-#define u 21
-#define p 16
+#define u 6
+#define p 11
 
 //Variables to read switch values and determine the case
 int sw1 = 0, sw2 = 0; //Switch 1 and Switch 2
