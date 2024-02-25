@@ -28,8 +28,6 @@ void setup() {
   pinMode(s2, INPUT_PULLDOWN); //setting switch 1 pin as INPUT with pull-down resistor configuration
   pinMode(sigA, OUTPUT);// setting sigA pin(LED 1/signal A) as OUTPUT
   pinMode(sigB, OUTPUT);// setting sigB pin(LED 2/signal B) as OUTPUT
-
-  Serial.println(A,B,C,D,M,R);
 }
 
 void loop() {
