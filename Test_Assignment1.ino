@@ -10,7 +10,7 @@
 //Width of Signal B
 #define SIG_B_WIDTH 50
 
-//Values corresponding to the first 5 letters in surname "naduparambil"
+//Values corresponding to the first 5 letters in the surname "naduparambil"
 #define n 14
 #define a 1
 #define d 4
@@ -24,8 +24,8 @@ int temp = 0;
 void setup() {
   Serial.begin(9600);
 
-  pinMode(s1, INPUT_PULLDOWN); //setting switch 1 pin as INPUT with pull down resistor configuration
-  pinMode(s2, INPUT_PULLDOWN); //setting switch 1 pin as INPUT with pull down resistor configuration
+  pinMode(s1, INPUT_PULLDOWN); //setting switch 1 pin as INPUT with pull-down resistor configuration
+  pinMode(s2, INPUT_PULLDOWN); //setting switch 1 pin as INPUT with pull-down resistor configuration
   pinMode(sigA, OUTPUT);// setting sigA pin(LED 1/signal A) as OUTPUT
   pinMode(sigB, OUTPUT);// setting sigB pin(LED 2/signal B) as OUTPUT
 
@@ -33,7 +33,7 @@ void setup() {
 }
 
 void loop() {
-  //Calculate the Parameters: 5 letters of surname "Nadup"
+  //Calculate the Parameters: 5 letters of the surname "Nadup"
   int A = n * 100; // parameter 'a' calculated as n*100
   int B = a * 100; // parameter 'b' calculated as a*100
   int C = d + 4; // parameter 'c' calculated as d+4
