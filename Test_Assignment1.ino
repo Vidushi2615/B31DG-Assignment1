@@ -1,4 +1,3 @@
-
 // Pin configuration of Switch
 #define s1 6 //Switch 1
 #define s2 7 //Switch 2
@@ -28,6 +27,8 @@ void setup() {
   pinMode(s2, INPUT_PULLDOWN); //setting switch 1 pin as INPUT with pull-down resistor configuration
   pinMode(sigA, OUTPUT);// setting sigA pin(LED 1/signal A) as OUTPUT
   pinMode(sigB, OUTPUT);// setting sigB pin(LED 2/signal B) as OUTPUT
+
+//  Serial.println(A,B,C,D,M,R);
 }
 
 void loop() {
@@ -37,45 +38,48 @@ void loop() {
   int C = d + 4; // parameter 'c' calculated as d+4
   int D = u * 500; // parameter 'd' calculated as u*500
   int M = ( p % 4 ) + 1;// mode is calculated as rem(p/4) + 1 = rem(11/4) + 1 = 4. Hence we use mode 4
-  
+
+  //Start with no output at both the signals
+  digitalWrite(sigA, LOW);
+  digitalWrite(sigB, LOW);
+
+  //Start signal B
+  digitalWrite(sigB, HIGH);
+  delay(SIG_B_WIDTH); // Keep the pulse high for 50 microsec
+  digitalWrite(sigB, LOW);
+
   sw1 = digitalRead(s1); // reading from Switch 1 (s1) and storing it in sw1
   sw2 = digitalRead(s2); // reading from Switch 2 (s2) and storing it in sw2
-  
-  if(sw1 == HIGH)         // using if else to determine the case
+
+  if(sw2 == LOW)
   {
-    digitalWrite(sigA, LOW);
-    digitalWrite(sigB, LOW);
-  }
-
-  else{
-
-    digitalWrite(sigB, HIGH);
-    delay(SIG_B_WIDTH);
-    digitalWrite(sigB, LOW);
-    
-    if(sw2 == LOW)
+    for(int i = 0 ; i < C ; i++ )
     {
-      for(int i = 0 ; i < C ; i++ )
+      if ( sw1 == LOW )
       {
         digitalWrite(sigA, HIGH);
-        delay(A);
-        digitalWrite(sigA, LOW);
-        delay(B);
-        A = A+1000;
       }
+      delay(A);
+      digitalWrite(sigA, LOW);
+      delay(B);
+      A = A + 50;
+      
       delay(D);
     }
-    else
+  }
+  else
+  {
+    for(int i = 0 ; i < C ; i++ )
     {
-      for(int i = 0 ; i < C ; i++ )
+      if ( sw1 == LOW )
       {
         digitalWrite(sigA, HIGH);
-        delay(A);
-        digitalWrite(sigA, LOW);
-        delay(B/2);
-        A = A+1000;
       }
-      delay(D/2);
+      delay(A);
+      digitalWrite(sigA, LOW);
+      delay(B/2);
+      A = A + 50;
     }
+    delay(D/2);
   }
 }
