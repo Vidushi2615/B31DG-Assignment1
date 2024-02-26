@@ -22,12 +22,10 @@ int ts1 = 0, ts2 = 0;
 
 void switch1(){
   sw1 = digitalRead(s1); // reading from Switch 1 (s1) and storing it in sw1
-  Serial.println("sw1");
 }
 
 void switch2(){
   sw2 = digitalRead(s2); // reading from Switch 2 (s2) and storing it in sw2
-  Serial.println("sw2");
 }
 
 void setup() {
@@ -39,7 +37,6 @@ void setup() {
   pinMode(sigB, OUTPUT);// setting sigB pin(LED 2/signal B) as OUTPUT
   attachInterrupt(s1, switch1, HIGH);
   attachInterrupt(s2, switch2, HIGH);
-  //attachInterrupt(sigB, signal, FALLING);
 }
 
 void loop() {
