@@ -16,9 +16,19 @@
 #define u 6
 #define p 11
 
-//Variables to read switch values and determine the case
+//Variables to read switch values and store it in temporary variables
 int sw1 = 0, sw2 = 0; //Switch 1 and Switch 2
-int temp = 0;
+int ts1 = 0, ts2 = 0;
+
+void switch1(){
+  sw1 = digitalRead(s1); // reading from Switch 1 (s1) and storing it in sw1
+  Serial.println("sw1");
+}
+
+void switch2(){
+  sw2 = digitalRead(s2); // reading from Switch 2 (s2) and storing it in sw2
+  Serial.println("sw2");
+}
 
 void setup() {
   Serial.begin(9600);
@@ -27,8 +37,9 @@ void setup() {
   pinMode(s2, INPUT_PULLDOWN); //setting switch 1 pin as INPUT with pull-down resistor configuration
   pinMode(sigA, OUTPUT);// setting sigA pin(LED 1/signal A) as OUTPUT
   pinMode(sigB, OUTPUT);// setting sigB pin(LED 2/signal B) as OUTPUT
-
-//  Serial.println(A,B,C,D,M,R);
+  attachInterrupt(s1, switch1, HIGH);
+  attachInterrupt(s2, switch2, HIGH);
+  //attachInterrupt(sigB, signal, FALLING);
 }
 
 void loop() {
@@ -48,14 +59,11 @@ void loop() {
   delay(SIG_B_WIDTH); // Keep the pulse high for 50 microsec
   digitalWrite(sigB, LOW);
 
-  sw1 = digitalRead(s1); // reading from Switch 1 (s1) and storing it in sw1
-  sw2 = digitalRead(s2); // reading from Switch 2 (s2) and storing it in sw2
-
-  if(sw2 == LOW)
+  if(ts2 == LOW)
   {
     for(int i = 0 ; i < C ; i++ )
     {
-      if ( sw1 == LOW )
+      if ( ts1 == LOW )
       {
         digitalWrite(sigA, HIGH);
       }
@@ -63,15 +71,14 @@ void loop() {
       digitalWrite(sigA, LOW);
       delay(B);
       A = A + 50;
-      
-      delay(D);
-    }
+    }   
+    delay(D);
   }
   else
   {
     for(int i = 0 ; i < C ; i++ )
     {
-      if ( sw1 == LOW )
+      if ( ts1 == LOW )
       {
         digitalWrite(sigA, HIGH);
       }
@@ -82,4 +89,10 @@ void loop() {
     }
     delay(D/2);
   }
+
+  ts1 = sw1 ;  
+  ts2 = sw2 ;
+
+  sw1 = 0;
+  sw2 = 0;
 }
